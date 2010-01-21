@@ -19,7 +19,7 @@ bindkey( 'j', next_thing );
 bindkey( 'k', prev_thing );
 bindkey( 'd', delete_thing );
 bindkey( 'c', change_thing );
-$j('#new textarea').bind('keydown', 'cmd+return', new_thing_submit );
+$j('#new textarea').bind('keydown', 'ctrl+return', new_thing_submit );
 $j('textarea').bind('keyup', 'esc', cancel );
 
 function bindkey( k,f ) {
@@ -65,7 +65,7 @@ function change_thing(){
                                 cur.html(html);
                             });
                     });
-                    textarea.bind('keydown', 'cmd+return', function(){
+                    textarea.bind('keydown', 'ctrl+return', function(){
     $j.post(
         '/change',
         { tid: cur.attr('tid'), thing: textarea.val() },
