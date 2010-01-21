@@ -3,7 +3,7 @@ use strict;
 use base qw( Rose::DB );
  
  
-my $db_path = '/Users/chunzi/.past.db';
+my $db_path = '/home/cnhacktnt/past/.past.db';
  
 __PACKAGE__->register_db(
     domain => "development",

@@ -19,8 +19,8 @@ bindkey( 'j', next_thing );
 bindkey( 'k', prev_thing );
 bindkey( 'd', delete_thing );
 bindkey( 'c', change_thing );
-$j('#new textarea').bind('keydown', 'ctrl+return', new_thing_submit );
-$j('textarea').bind('keyup', 'esc', cancel );
+$j('#new textarea').bind('keydown', 'alt+return', new_thing_submit );
+$j('textarea').bind('keyup', 'alt+esc', cancel );
 
 function bindkey( k,f ) {
     $j(document).bind('keyup', { combi: k, disableInInput: true }, f );
@@ -57,7 +57,7 @@ function change_thing(){
                     var textarea = cur.children('textarea'); 
                     textarea.autogrow();
                     textarea.focus();
-                    textarea.bind('keyup', 'esc', function(){ 
+                    textarea.bind('keyup', 'alt+esc', function(){ 
                         $j.get(
                             '/thing',
                             { tid: cur.attr('tid') },
@@ -65,7 +65,7 @@ function change_thing(){
                                 cur.html(html);
                             });
                     });
-                    textarea.bind('keydown', 'ctrl+return', function(){
+                    textarea.bind('keydown', 'alt+return', function(){
     $j.post(
         '/change',
         { tid: cur.attr('tid'), thing: textarea.val() },
@@ -74,6 +74,7 @@ function change_thing(){
             if ( ret.ok ){
                 cur.html( ret.html );
             }
+            $j('#title').focus();
         }
     );
                     } );
@@ -105,6 +106,7 @@ function delete_thing(){
                 }else{
                     alert('failed delete this one.');
                 }
+                $j('#title').focus();
             }
         );
     }
@@ -143,7 +145,7 @@ function prev_thing(){
 </head>
 <body>
     <div id="wrapper">
-        <div id="header"><h1><a href="/">Past</a></h1></div>
+        <div id="header"><h1><a href="/" id="title">Past</a></h1></div>
         <div id='content'>
 
 <div class="box">
